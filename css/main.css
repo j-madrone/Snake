@@ -1,0 +1,257 @@
+@import "normalize.css";
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+/* 
+Project Name: Snake
+Author: Jasper Sardonicus
+*/
+
+* {
+  -moz-box-sizing: border-box; /* Firexfox */
+  -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+  box-sizing: border-box; /* IE */
+}
+
+body {
+  font-size: 1.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body, h1 {
+  color: #000;
+}
+
+body, html, .overlay {
+  height: 100%;
+}
+
+footer {
+  color: #FFF;
+}
+
+footer, .game-board {
+  background: #000;
+}
+
+footer, .pause, .score {
+  font-size: 2rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+h1, .modal {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h1, footer {
+  padding: 2rem;
+}
+
+header {
+  border-bottom: 2px solid #000;
+  background: #C0D0E7;
+}
+
+.button {
+  height: 17%;
+  width: 50%;
+  margin: auto;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  border: 0px solid #000000;
+  background: rgba(179,220,237,1);
+  background: -moz-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 97%, rgba(188,224,238,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(179,220,237,1)), color-stop(97%, rgba(41,184,229,1)), color-stop(100%, rgba(188,224,238,1)));
+  background: -webkit-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 97%, rgba(188,224,238,1) 100%);
+  background: -o-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 97%, rgba(188,224,238,1) 100%);
+  background: -ms-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 97%, rgba(188,224,238,1) 100%);
+  background: linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 97%, rgba(188,224,238,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr = '#B3DCED', endColorstr = '#BCE0EE', GradientType = 0 );
+}
+
+.button:first-of-type {
+  margin-bottom: 5px;
+}
+
+.button:hover {
+  background: -moz-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 4%, rgba(188,224,238,1) 66%, rgba(188,224,238,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(179,220,237,1)), color-stop(4%, rgba(41,184,229,1)), color-stop(66%, rgba(188,224,238,1)), color-stop(100%, rgba(188,224,238,1)));
+  background: -webkit-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 4%, rgba(188,224,238,1) 66%, rgba(188,224,238,1) 100%);
+  background: -o-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 4%, rgba(188,224,238,1) 66%, rgba(188,224,238,1) 100%);
+  background: -ms-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 4%, rgba(188,224,238,1) 66%, rgba(188,224,238,1) 100%);
+  background: linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 4%, rgba(188,224,238,1) 66%, rgba(188,224,238,1) 100%);
+}
+
+.food {
+  animation:changeShadow 2s infinite;
+  -moz-animation:changeShadow 2s infinite; /* Firefox */
+  -webkit-animation:changeShadow 2s infinite; /* Safari and Chrome */
+}
+
+.food, .modal, .overlay, .pause, .score, .snake-body {
+  position: absolute;
+}
+
+.food, .snake-body {
+  z-index: 1;
+}
+
+.game-board, .game-wrapper {
+  border: 1px solid black;
+  position: relative;
+}
+
+.game-wrapper {
+  margin: 5.5rem auto;
+  min-height: 100%;
+  padding: 1rem;
+}
+
+.game-wrapper, .modal {
+  border-radius: .5rem;
+}
+
+.main {
+  flex: 1;
+  justify-content: space-around;
+  animation:animateColors 60s infinite;
+  -moz-animation:animateColors 60s infinite; /* Firefox */
+  -webkit-animation:animateColors 60s infinite; /* Safari and Chrome */
+}
+
+.modal {
+  width: 40%;
+  height: 50%;
+  top: 25%;
+  left: 30%;
+  background: #F1C40F;
+}
+
+.modal, .overlay, .pause-message {
+  display: none;
+  z-index: 2;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5); /*dim the background*/
+}
+
+.pause {
+  bottom: -4.5rem;
+}
+
+.score {
+  top: -4.5rem;
+}
+
+.score.player-2 {
+  left: 1.5rem;
+}
+
+.score.player-1 {
+  right: 1.5rem;
+}
+
+#container {
+  min-height: 100vh;
+}
+
+#container, .main {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes animateColors
+{
+  0% {background: coral;}
+  10% {background: lightblue;}
+  20% {background: mediumpurple;}
+  30% {background: lightyellow;}
+  40% {background: mediumspringgreen;}
+  50% {background: sandybrown;}
+  60% {background: crimson;}
+  70% {background: darkcyan;}
+  80% {background: cornflowerblue;}
+  90% {background: gold;}
+  100% {background: coral;}
+}
+
+@-moz-keyframes animateColors /* Firefox */
+{
+  0% {background: coral;}
+  10% {background: lightblue;}
+  20% {background: mediumpurple;}
+  30% {background: lightyellow;}
+  40% {background: mediumspringgreen;}
+  50% {background: sandybrown;}
+  60% {background: crimson;}
+  70% {background: darkcyan;}
+  80% {background: cornflowerblue;}
+  90% {background: gold;}
+  100% {background: coral;}
+}
+
+@-webkit-keyframes animateColors /* Safari and Chrome */
+{
+  0% {background: coral;}
+  10% {background: lightblue;}
+  20% {background: mediumpurple;}
+  30% {background: lightyellow;}
+  40% {background: mediumspringgreen;}
+  50% {background: sandybrown;}
+  60% {background: crimson;}
+  70% {background: darkcyan;}
+  80% {background: cornflowerblue;}
+  90% {background: gold;}
+  100% {background: coral;}
+}
+
+@keyframes changeShadow {
+  0% {
+    box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+
+  50% {
+    box-shadow: 0px 0px 0px 0px rgba(54,255,54,1);
+  }
+
+  100% {
+    box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+}
+
+@-webkit-keyframes changeShadow {
+  0% {
+    -webkit-box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+
+  50% {
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(54,255,54,1);
+  }
+
+  100% {
+    -webkit-box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+}
+
+@-moz-keyframes changeShadow {
+  0% {
+    -moz-box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+
+  50% {
+    -moz-box-shadow: 0px 0px 0px 0px rgba(54,255,54,1);
+  }
+
+  100% {
+    -moz-box-shadow: 0px 0px 20px 2px rgba(54,255,54,1);
+  }
+}
