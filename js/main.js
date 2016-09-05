@@ -120,14 +120,14 @@ $(document).ready(function() {
   }
   
   //Start a 1 player game
-  $('.1-player').on('click', function() {
+  $('#1-player-game').on('click', function() {
     //Unpause
     togglePauseGame();
     startNewGame(1);
   });
 
   //Start a 2 player game
-  $('.2-player').on('click', function() {
+  $('#2-player-game').on('click', function() {
     //Unpause
     togglePauseGame();
     startNewGame(2);
@@ -245,7 +245,7 @@ $(document).ready(function() {
     
     //Update the score
     var scoreText = 'Player ' + player.playerNumber + ': ' + player.score;
-    $('.score.player-' + player.playerNumber).text(scoreText);
+    $('#player-' + player.playerNumber + '-score').text(scoreText);
   }
 
   //Draw the snake(s)
