@@ -93,7 +93,7 @@ header {
   -webkit-animation:changeShadow 2s infinite; /* Safari and Chrome */
 }
 
-.food, .modal, .overlay, .pause, .score, .snake-body {
+.food, .games-won, .modal, .overlay, .pause, .score, .snake-body {
   position: absolute;
 }
 
@@ -114,6 +114,10 @@ header {
 
 .game-wrapper, .modal {
   border-radius: .5rem;
+}
+
+.games-won {
+  top: -6rem;
 }
 
 .main {
@@ -152,6 +156,13 @@ header {
   top: -4.5rem;
 }
 
+.score.player-2, #player-2-games-won {
+  left: 1.5rem;
+}
+
+.score.player-1, #player-1-games-won {
+  right: 1.5rem;
+}
 #container {
   min-height: 100vh;
 }

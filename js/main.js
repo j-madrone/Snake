@@ -17,6 +17,7 @@ $(document).ready(function() {
     keyStrokes: [],
     playerNumber: 1,
     xStart: cellsX / 2 + 1,
+    gamesWon: 0,
     keyMap: {
       '39': 1,
       '37': 2,
@@ -37,6 +38,7 @@ $(document).ready(function() {
     keyStrokes: [],
     playerNumber: 2,
     xStart: cellsX / 2 - 1,
+    gamesWon: 0,
     keyMap: {
       '68': 1,
       '65': 2,
@@ -123,6 +125,9 @@ $(document).ready(function() {
   $('#1-player-game').on('click', function() {
     //Unpause
     togglePauseGame();
+    $('.games-won').text('');
+    player1.gamesWon = 0;
+    player2.gamesWon = 0;
     startNewGame(1);
   });
 
@@ -130,6 +135,9 @@ $(document).ready(function() {
   $('#2-player-game').on('click', function() {
     //Unpause
     togglePauseGame();
+    $('.games-won').text('');
+    player1.gamesWon = 0;
+    player2.gamesWon = 0;
     startNewGame(2);
   });
 
@@ -194,6 +202,19 @@ $(document).ready(function() {
         || checkCollision(headX, headY, player.snake)
         || (player.playerNumber == 1 && checkCollision(headX, headY, player2.snake))
         || (player.playerNumber == 2 && checkCollision(headX, headY, player1.snake))) {
+      if (players == 2) {
+        var gamesWonText = 'Games Won: ';
+        if (player.playerNumber == 1) {
+          player2.gamesWon += 1;
+          gamesWonText += player2.gamesWon;
+          $('#player-2-games-won').text(gamesWonText);
+        } else if (player.playerNumber == 2) {
+          player1.gamesWon += 1;
+          gamesWonText += player1.gamesWon;
+          $('#player-1-games-won').text(gamesWonText);
+        }
+      }
+      
       //Start a new game with the current amount of players
       startNewGame(players);
       return;
