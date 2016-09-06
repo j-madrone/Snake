@@ -36,6 +36,10 @@ footer, .pause, .score {
   font-size: 2rem;
 }
 
+footer, h1 {
+  padding: 2rem;
+}
+
 h1 {
   margin: 0;
 }
@@ -43,10 +47,6 @@ h1 {
 h1, .modal {
   font-size: 3rem;
   text-align: center;
-}
-
-h1, footer {
-  padding: 2rem;
 }
 
 header {
@@ -163,7 +163,6 @@ header {
 .score.player-1, #player-1-games-won {
   right: 1.5rem;
 }
-
 #container {
   min-height: 100vh;
 }
@@ -171,6 +170,14 @@ header {
 #container, .main {
   display: flex;
   flex-direction: column;
+}
+
+#player-1-score {
+  right: 1.5rem;
+}
+
+#player-2-score {
+  left: 1.5rem;
 }
 
 @keyframes animateColors
